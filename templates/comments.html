@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Comentarios - {{ post.title }}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="background-color: #242526; min-height: 100vh;">
+    <div class="row pt-5" >
+        <div class="col-md-12 pt-3">
+            <h3 class="text-white text-center" style="font-weight: bolder;">{{ post.title }}</h3> <!-- Muestra el título del post -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 pt-3">
+            <h5 class="text-white text-left">Comentarios</h5>
+        </div>
+    </div>
+    <div class="row">
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="col-md-12">
+                    <div class="card mb-3" style="background-color: #3a3b3c;">
+                        <div class="card-body">
+                            <p class="card-text text-white">{{ comment.author }}:</p>
+                            <p class="card-text text-white px-2">{{ comment.content }}</p>
+                            <p class="card-text px-4"><small class="text-muted">{{ comment.date }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-md-12">
+                <div class="alert alert-info mt-4" role="alert">
+                    No hay comentarios.
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

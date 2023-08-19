@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+{% block title %}
+    PitStop
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="background-color: #242526;">
+    <div class="row py-5 px-4">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12" >
+                        <div class="card mb-4 px-3" style="background-color: #3a3b3c;">
+                            <h3 class="text-white text-center py-3 ">Entradas</h3>
+                        </div>
+                    </div>
+                    {% for post in posts %}
+                    <div class="col-md-12">
+                        <div class="card mb-4 px-3">
+                            <div class="card-body">
+                                <h3 class="card-title text-center pb-3">{{ post.title }}</h3>
+                                <p class="card-text">
+                                    {{ post.content|safe }}
+                                </p>
+                                <div class="container-fluid d-flex px-0 py-2 justify-content-between">
+                                    <div class="col-md-6 px-0 mx-0 text-left ">
+                                        <p class="card-text"><small class="text-muted">Publicado por {{ post.author }} el {{ post.date }}</small></p>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <a href="/comments/{{ post.id }}" class="btn btn-secondary px-4">Ver Comentarios</a>
+                                        <a href="/edit/{{ post.id }}" class="btn btn-warning px-4">Editar</a>
+                                        <a href="/delete/{{ post.id }}" class="btn btn-danger px-4">Borrar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4" style="background-color: #3a3b3c;">
+                    <h3 class="text-white text-center py-3">Nueva entrada</h3>
+                </div>
+                <div class="card pb-3" style="background-color: #3a3b3c;">
+                    <form action="/" method="post">
+                        <div class="mb-3 mx-4 text-center">
+                            <div class="d-inline-block">
+                                <h5 class="text-center text-white pt-3">Titulo</h5>
+                            </div>
+                            <input type="text" class="form-control" name="title" id="input-title">
+                        </div>
+                        <div class="mb-3 mx-4 text-center">
+                            <div class="d-inline-block">
+                                <h5 class="text-center text-white pt-3">Contenido</h5>
+                            </div>
+                            <textarea class="form-control" style="resize: vertical; height: 300px;" name="content" id="input-content"></textarea>
+                        </div>
+                        <div class="mb-3 mx-4 text-center">
+                            <div class="d-inline-block">
+                                <h5 class="text-center text-white pt-3">Autor</h4>
+                            </div>
+                            <select class="form-select w-100" id="select-user" name="author">
+                                {% for user in users %}
+                                    <option value="{{ user.id }}">{{ user.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 mx-4 text-center">
+                            <div class="d-inline-block">
+                                <h5 class="text-center text-white pt-3">Categoria</h4>
+                            </div>
+                            <select class="form-select w-100" id="select-category" name="category-post">
+                                {% for category in categories %}
+                                    <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 mx-4 pt-5 text-center">
+                            <div class="d-inline-block">
+                                <button type="submit" class="btn btn-danger" style="width: 20rem;">Subir</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card mt-5" style="background-color: #3a3b3c;">
+                    <h3 class="text-white text-center pt-3">Agregar Comentario</h3>
+                </div>
+                <div class="card pb-3 mt-4" style="background-color: #3a3b3c;">
+                    <form action="/add-comment" method="post">
+                        <div class="mb-3 mx-4 text-center">
+                            <div class="d-inline-block">
+                                <h5 class="text-center text-white pt-3">Contenido del Comentario</h5>
+                            </div>
+                            <textarea class="form-control" style="resize: vertical; height: 300px;" name="content" id="input-content"></textarea>
+                        </div>
+                        <div class="mb-3 mx-4 text-center">
+                            <div class="d-inline-block">
+                                <h5 class="text-center text-white pt-3">Autor</h5>
+                            </div>
+                            <select class="form-select w-100" id="select-user" name="author">
+                                {% for user in users %}
+                                    <option value="{{ user.id }}">{{ user.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 mx-4 text-center">
+                            <div class="d-inline-block">
+                                <h5 class="text-center text-white pt-3">Publicación</h5>
+                            </div>
+                            <select class="form-select w-100" id="select-post" name="post">
+                                {% for post in posts %}
+                                    <option value="{{ post.id }}">{{ post.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 mx-4 pt-5 text-center">
+                            <div class="d-inline-block">
+                                <button type="submit" class="btn btn-danger" style="width: 20rem;">Agregar Comentario</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                
+            </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
