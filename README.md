@@ -1,5 +1,6 @@
 # Pitstop - MiniBlog de Automovilismo
 
+**¡Atención! Esta aplicación se encuentra actualmente en proceso de desarrollo.**
 
 Bienvenido al repositorio de **Pitstop**, un trabajo integrador para la materia PP1_PY. En este proyecto, estamos utilizando Flask para desarrollar un miniblog enfocado en artículos relacionados con el emocionante mundo del deporte automovilismo.
 
@@ -25,7 +26,27 @@ Estamos trabajando arduamente en desarrollar las siguientes características par
 - Comentarios y participación de la comunidad.
 - Categorización de artículos por tipos de carreras, equipos, pilotos, etc.
 
+## Cómo Correr la Aplicación
 
+1. Clona este repositorio: `git clone https://github.com/juanjcenturion/centurion-pit_stop-miniblog.git`
+2. Navega al directorio del proyecto.
+3. Crea un entorno virtual: `python3 -m venv venv`
+4. Activa el entorno virtual:
+   - En Windows: `venv\Scripts\activate`
+   - En macOS y Linux: `source venv/bin/activate`
+5. Instala las dependencias: `pip install -r requirements.txt`
+6. Configura las variables de entorno, como la clave secreta de Flask, la configuración de la base de datos, etc. (crear archivo `.env`).
+7. Inicia la aplicación: `flask run --reload`
+
+La aplicación estará disponible en `http://localhost:5000`.
+
+## Endpoints
+
+- `/`: Página de inicio con los artículos más recientes.
+- `/articulo/<int:id>`: Página de un artículo específico.
+- `/crear_articulo`: Página para crear un nuevo artículo (requiere autenticación).
+- `/editar_articulo/<int:id>`: Página para editar un artículo existente (requiere autenticación).
+- `/registro`: Página de registro de usuario.
 
 ¡Gracias por ser parte de Pitstop!
 
